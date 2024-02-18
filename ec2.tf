@@ -23,10 +23,12 @@ resource "aws_security_group" "example" {
 
 resource "aws_instance" "example" {
   ami           = "ami-0c02fb55956c7d316"  
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   security_groups = [aws_security_group.example.name]
 
   tags = {
     Name = "ExampleInstance"
   }
 }
+
+variable "instance_type" {}
