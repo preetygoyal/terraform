@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "example" {
-  name        = "example-allow-all"
+  name        = var.servername
   description = "Allow all inbound traffic"
 
   ingress {
@@ -27,8 +27,9 @@ resource "aws_instance" "example" {
   security_groups = [aws_security_group.example.name]
 
   tags = {
-    Name = "ExampleInstance"
+    Name = var.servername
   }
 }
 
 variable "instance_type" {}
+variable "servername" {}
